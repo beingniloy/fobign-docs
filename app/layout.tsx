@@ -9,7 +9,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Fobign API Documentation — Unified AI Gateway',
+  title: 'Fobign API Documentation : Unified AI Gateway',
   description: 'Official API reference, client SDK guides, and integration tutorials for Fobign Technologies (docs.fobign.com).',
   metadataBase: new URL('https://docs.fobign.com'),
   alternates: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Fobign API Documentation — Unified AI Gateway',
+    title: 'Fobign API Documentation : Unified AI Gateway',
     description: 'Official API reference, client SDK guides, and integration tutorials for Fobign Technologies.',
     url: 'https://docs.fobign.com',
     siteName: 'Fobign Technologies',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fobign API Documentation — Unified AI Gateway',
+    title: 'Fobign API Documentation : Unified AI Gateway',
     description: 'Official API reference and developer docs for Fobign Technologies.',
   },
   icons: {

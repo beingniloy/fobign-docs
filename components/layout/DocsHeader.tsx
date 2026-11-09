@@ -91,16 +91,6 @@ export default function DocsHeader({ onSearchClick }: DocsHeaderProps) {
           </a>
 
           <a
-            href="https://api.fobign.com/health"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[var(--ink)] transition-colors hidden sm:flex items-center gap-1.5 font-mono text-[11px]"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Gateway 99.9%</span>
-          </a>
-
-          <a
             href="https://platform.fobign.com/api-keys"
             target="_blank"
             rel="noopener noreferrer"
