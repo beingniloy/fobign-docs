@@ -2,28 +2,20 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
-  BookOpen,
-  Terminal,
-  Key,
-  Cpu,
-  Layers,
-  Sparkles,
-  Zap,
-  Activity,
-  AlertTriangle,
-  Code2,
-  FileCode,
   Globe,
+  Zap,
+  Key,
+  AlertTriangle,
+  Terminal,
+  Sparkles,
+  Cpu,
 } from 'lucide-react';
-
-interface DocsSidebarProps {
-  activeSection: string;
-  onSelectSection: (id: string) => void;
-}
 
 export interface DocsItem {
   id: string;
+  href: string;
   title: string;
   icon: React.ComponentType<{ className?: string }>;
   badge?: string;
@@ -38,41 +30,29 @@ export const DOCS_SECTIONS: DocsCategory[] = [
   {
     category: 'Getting Started',
     items: [
-      { id: 'overview', title: 'Platform Overview', icon: Globe },
-      { id: 'quickstart', title: 'Quickstart Guide', icon: Zap },
-      { id: 'authentication', title: 'Authentication & Bearer Keys', icon: Key },
-      { id: 'errors', title: 'Errors & HTTP Statuses', icon: AlertTriangle },
+      { id: 'overview', href: '/', title: 'Platform Overview', icon: Globe },
+      { id: 'quickstart', href: '/quickstart', title: 'Quickstart Guide', icon: Zap },
+      { id: 'authentication', href: '/authentication', title: 'Authentication & Keys', icon: Key },
+      { id: 'errors', href: '/errors', title: 'Errors & HTTP Statuses', icon: AlertTriangle },
     ],
   },
   {
     category: 'API Endpoints',
     items: [
-      { id: 'chat-completions', title: 'Chat Completions (/v1/chat/completions)', icon: Terminal, badge: 'POST' },
-      { id: 'claude-messages', title: 'Anthropic Messages (/v1/messages)', icon: Sparkles, badge: 'POST' },
-      { id: 'models-catalog', title: 'Model Discovery (/v1/models)', icon: Cpu, badge: 'GET' },
-      { id: 'embeddings', title: 'Embeddings (/v1/embeddings)', icon: Layers, badge: 'POST' },
-    ],
-  },
-  {
-    category: 'Architecture & Guides',
-    items: [
-      { id: 'streaming-sse', title: 'Realtime Streaming (SSE)', icon: Activity },
-      { id: 'prompt-caching', title: 'Prompt Caching & KV Storage', icon: Layers },
-      { id: 'failover', title: 'Zero-Downtime Failover Pools', icon: Zap },
-      { id: 'billing-telemetry', title: 'Token Billing & Quotas', icon: FileCode },
-    ],
-  },
-  {
-    category: 'SDKs & Libraries',
-    items: [
-      { id: 'sdk-python', title: 'Python SDK (OpenAI & Anthropic)', icon: Code2 },
-      { id: 'sdk-node', title: 'TypeScript / Node.js SDK', icon: Code2 },
-      { id: 'sdk-curl', title: 'cURL & Raw HTTP', icon: Terminal },
+      { id: 'chat-completions', href: '/chat-completions', title: 'Chat Completions', icon: Terminal, badge: 'POST' },
+      { id: 'claude-messages', href: '/claude-messages', title: 'Anthropic Messages', icon: Sparkles, badge: 'POST' },
+      { id: 'models', href: '/models', title: 'Model Discovery', icon: Cpu, badge: 'GET' },
     ],
   },
 ];
 
-export default function DocsSidebar({ activeSection, onSelectSection }: DocsSidebarProps) {
+interface DocsSidebarProps {
+  activeSection?: string;
+}
+
+export default function DocsSidebar({ activeSection }: DocsSidebarProps) {
+  const pathname = usePathname();
+
   return (
     <aside className="w-64 shrink-0 border-r border-[#232326] bg-[#0e0f11] min-h-[calc(100vh-4rem)] p-4 space-y-6 text-xs">
       {DOCS_SECTIONS.map((sec) => (
@@ -83,13 +63,16 @@ export default function DocsSidebar({ activeSection, onSelectSection }: DocsSide
           <ul className="space-y-0.5">
             {sec.items.map((item) => {
               const Icon = item.icon;
-              const isActive = activeSection === item.id;
+              const isActive =
+                activeSection === item.id ||
+                pathname === item.href ||
+                (item.href !== '/' && pathname.startsWith(item.href));
+
               return (
                 <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => onSelectSection(item.id)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors cursor-pointer ${
+                  <Link
+                    href={item.href}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
                       isActive
                         ? 'bg-[#1e1e22] text-white font-medium shadow-xs'
                         : 'text-[#a1a1aa] hover:text-white hover:bg-[#151518]'
@@ -110,7 +93,7 @@ export default function DocsSidebar({ activeSection, onSelectSection }: DocsSide
                         {item.badge}
                       </span>
                     )}
-                  </button>
+                  </Link>
                 </li>
               );
             })}
@@ -120,4 +103,3 @@ export default function DocsSidebar({ activeSection, onSelectSection }: DocsSide
     </aside>
   );
 }
-

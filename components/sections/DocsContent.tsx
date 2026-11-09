@@ -2,7 +2,6 @@
 
 import React from 'react';
 import CodeBlock from '@/components/ui/CodeBlock';
-import ApiTester from '@/components/ui/ApiTester';
 import {
   ExternalLink,
   ShieldCheck,
@@ -68,14 +67,6 @@ export default function DocsContent({ sectionId }: DocsContentProps) {
               </p>
             </div>
           </div>
-
-          <section className="space-y-4">
-            <h2 className="text-xl font-medium text-white">Interactive Playground</h2>
-            <p className="text-xs text-[#a1a1aa]">
-              You can test live streaming completions directly against the Fobign API Gateway:
-            </p>
-            <ApiTester />
-          </section>
         </article>
       );
 
@@ -419,6 +410,7 @@ print(message.content[0].text)`,
         </article>
       );
 
+    case 'models':
     case 'models-catalog':
       return (
         <article className="space-y-8 max-w-4xl">
@@ -488,7 +480,6 @@ print(message.content[0].text)`,
               Select an item from the left navigation sidebar to view detailed schemas and interactive code samples.
             </p>
           </div>
-          <ApiTester />
         </article>
       );
   }

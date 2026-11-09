@@ -1,0 +1,38 @@
+# Fobign Technologies API Documentation
+> Unified AI Gateway & Multi-Model Inference Proxy
+
+- Documentation Home: https://docs.fobign.com
+- API Endpoint: https://api.fobign.com/v1
+- Developer Console: https://platform.fobign.com
+- Contact & Support: hello@fobign.com
+
+## Core API Endpoints
+
+### 1. Chat Completions
+- URL: POST https://api.fobign.com/v1/chat/completions
+- Spec: OpenAI compatible JSON payload with server-sent events (`stream: true`).
+- Headers: `Authorization: Bearer <FOBIGN_API_KEY>`, `Content-Type: application/json`
+- Supports: DeepSeek, OpenAI GPT, Anthropic Claude, Google Gemini, Mistral, Llama 3 models.
+
+### 2. Anthropic Messages
+- URL: POST https://api.fobign.com/v1/messages
+- Spec: Anthropic Claude compatible payload with `anthropic-version: 2023-06-01`.
+- Headers: `x-api-key: <FOBIGN_API_KEY>`, `Content-Type: application/json`
+
+### 3. Model Discovery
+- URL: GET https://api.fobign.com/v1/models
+- Headers: `Authorization: Bearer <FOBIGN_API_KEY>`
+- Returns: Active models, context windows, and token pricing rates.
+
+### 4. Vector Embeddings
+- URL: POST https://api.fobign.com/v1/embeddings
+- Input: String or list of tokens
+- Compatible with text-embedding-3-small, text-embedding-3-large, bge-m3.
+
+## Links & Navigation
+- Quickstart Guide: https://docs.fobign.com/quickstart
+- Authentication: https://docs.fobign.com/authentication
+- Chat Completions: https://docs.fobign.com/chat-completions
+- Claude Messages: https://docs.fobign.com/claude-messages
+- Models Catalog: https://docs.fobign.com/models
+- Error Codes: https://docs.fobign.com/errors

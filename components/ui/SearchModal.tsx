@@ -1,26 +1,24 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { DOCS_SECTIONS } from '@/components/layout/DocsSidebar';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelect: (id: string) => void;
 }
 
-export default function SearchModal({ isOpen, onClose, onSelect }: SearchModalProps) {
+export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else {
-          // open handled by parent
-        }
       }
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -58,7 +56,7 @@ export default function SearchModal({ isOpen, onClose, onSelect }: SearchModalPr
           />
           <button
             onClick={onClose}
-            className="absolute right-2.5 top-2.5 text-[#71717a] hover:text-white p-0.5"
+            className="absolute right-2.5 top-2.5 text-[#71717a] hover:text-white p-0.5 cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -76,7 +74,7 @@ export default function SearchModal({ isOpen, onClose, onSelect }: SearchModalPr
                 <button
                   key={item.id}
                   onClick={() => {
-                    onSelect(item.id);
+                    router.push(item.href);
                     onClose();
                   }}
                   className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-[#1e1e22] text-left transition-colors cursor-pointer group"
@@ -98,4 +96,3 @@ export default function SearchModal({ isOpen, onClose, onSelect }: SearchModalPr
     </div>
   );
 }
-
