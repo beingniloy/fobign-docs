@@ -42,29 +42,29 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/80 backdrop-blur-xs">
-      <div className="bg-[#141416] border border-[#27272a] rounded-2xl w-full max-w-lg p-4 space-y-3 shadow-2xl animate-in fade-in zoom-in-95 duration-150 text-xs">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/60 backdrop-blur-xs">
+      <div className="bg-[var(--surface-card)] border border-[var(--hairline)] rounded-2xl w-full max-w-lg p-4 space-y-3 shadow-2xl animate-in fade-in zoom-in-95 duration-150 text-xs">
         <div className="relative">
-          <Search className="w-4 h-4 text-[#71717a] absolute left-3 top-3 pointer-events-none" />
+          <Search className="w-4 h-4 text-[var(--muted)] absolute left-3 top-3 pointer-events-none" />
           <input
             type="text"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search API documentation..."
-            className="w-full bg-[#101012] border border-[#232326] rounded-xl pl-9 pr-9 py-2.5 text-white placeholder-[#71717a] focus:outline-none focus:border-white/40"
+            className="w-full bg-[var(--canvas-soft)] border border-[var(--hairline)] rounded-xl pl-9 pr-9 py-2.5 text-[var(--ink)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--hairline-strong)]"
           />
           <button
             onClick={onClose}
-            className="absolute right-2.5 top-2.5 text-[#71717a] hover:text-white p-0.5 cursor-pointer"
+            className="absolute right-2.5 top-2.5 text-[var(--muted)] hover:text-[var(--ink)] p-0.5 cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="max-h-72 overflow-y-auto space-y-1 divide-y divide-[#1e1e22]">
+        <div className="max-h-72 overflow-y-auto space-y-1 divide-y divide-[var(--hairline)]">
           {filtered.length === 0 ? (
-            <div className="py-8 text-center text-[#71717a]">
+            <div className="py-8 text-center text-[var(--muted)]">
               No documentation pages found for &ldquo;{query}&rdquo;.
             </div>
           ) : (
@@ -77,16 +77,16 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     router.push(item.href);
                     onClose();
                   }}
-                  className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-[#1e1e22] text-left transition-colors cursor-pointer group"
+                  className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-[var(--surface-strong)] text-left transition-colors cursor-pointer group"
                 >
                   <div className="flex items-center gap-2.5 truncate">
-                    <Icon className="w-4 h-4 text-[#71717a] group-hover:text-[#f54e00] shrink-0" />
+                    <Icon className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--primary)] shrink-0" />
                     <div>
-                      <div className="text-white font-medium">{item.title}</div>
-                      <div className="text-[10px] text-[#71717a]">{item.category}</div>
+                      <div className="text-[var(--ink)] font-medium">{item.title}</div>
+                      <div className="text-[10px] text-[var(--muted)]">{item.category}</div>
                     </div>
                   </div>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#71717a] group-hover:text-white shrink-0" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[var(--muted)] group-hover:text-[var(--ink)] shrink-0" />
                 </button>
               );
             })

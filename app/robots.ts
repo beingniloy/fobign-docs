@@ -11,3 +11,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: 'https://docs.fobign.com/sitemap.xml',
   };
 }
+

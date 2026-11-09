@@ -54,10 +54,10 @@ export default function DocsSidebar({ activeSection }: DocsSidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 shrink-0 border-r border-[#232326] bg-[#0e0f11] min-h-[calc(100vh-4rem)] p-4 space-y-6 text-xs">
+    <aside className="w-64 shrink-0 border-r border-[var(--hairline)] bg-[var(--canvas)] min-h-[calc(100vh-4rem)] p-4 space-y-6 text-xs transition-colors">
       {DOCS_SECTIONS.map((sec) => (
         <div key={sec.category} className="space-y-1.5">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-[#71717a] px-3 mb-1">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-[var(--muted)] px-3 mb-1">
             {sec.category}
           </div>
           <ul className="space-y-0.5">
@@ -74,22 +74,16 @@ export default function DocsSidebar({ activeSection }: DocsSidebarProps) {
                     href={item.href}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
                       isActive
-                        ? 'bg-[#1e1e22] text-white font-medium shadow-xs'
-                        : 'text-[#a1a1aa] hover:text-white hover:bg-[#151518]'
+                        ? 'bg-[var(--surface-card)] text-[var(--ink)] font-semibold border border-[var(--hairline)] shadow-2xs'
+                        : 'text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--surface-card)]'
                     }`}
                   >
-                    <div className="flex items-center gap-2 truncate">
-                      <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#f54e00]' : 'text-[#71717a]'}`} />
+                    <div className="flex items-center gap-2.5 truncate">
+                      <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[var(--primary)]' : 'text-[var(--muted)]'}`} />
                       <span className="truncate">{item.title}</span>
                     </div>
                     {item.badge && (
-                      <span
-                        className={`text-[9px] font-mono px-1.5 py-0.2 rounded font-bold uppercase ${
-                          item.badge === 'POST'
-                            ? 'bg-blue-500/15 text-blue-400'
-                            : 'bg-emerald-500/15 text-emerald-400'
-                        }`}
-                      >
+                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded font-bold uppercase bg-[var(--surface-strong)] text-[var(--ink)] border border-[var(--hairline)]">
                         {item.badge}
                       </span>
                     )}
