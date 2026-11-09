@@ -22,7 +22,19 @@ interface DocsSidebarProps {
   onSelectSection: (id: string) => void;
 }
 
-export const DOCS_SECTIONS = [
+export interface DocsItem {
+  id: string;
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string;
+}
+
+export interface DocsCategory {
+  category: string;
+  items: DocsItem[];
+}
+
+export const DOCS_SECTIONS: DocsCategory[] = [
   {
     category: 'Getting Started',
     items: [

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Search, ExternalLink, ArrowUpRight, Github } from 'lucide-react';
+import { Search, ExternalLink, ArrowUpRight } from 'lucide-react';
 import FobignLogo from '@/components/ui/FobignLogo';
 
 interface DocsHeaderProps {
